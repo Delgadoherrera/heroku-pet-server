@@ -9,7 +9,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const sequelize = new Sequelize('missingpet', 'root', '', {
+/* const sequelize = new Sequelize('missingpet', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
 
@@ -19,7 +19,7 @@ const sequelize = new Sequelize('missingpet', 'root', '', {
         acquire: 30000,
         idle: 10000
     }
-})
+}) */
 
 
 

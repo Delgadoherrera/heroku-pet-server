@@ -1,6 +1,0 @@
-DB_USERNAME= sql10563372
-DB_PASSWORD = AMKy7xrDUk
-DB_HOST = sql10.freesqldatabase.com
-DB_DATABASE = sql10563372
-DB_PORT = 3306
-DB_DIALECT = mysql
