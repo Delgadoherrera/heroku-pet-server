@@ -91,9 +91,9 @@ router.post("/user/login", async (req, res) => {
                 })
 
             }
-            //El mail no se encuentra ==3
+            //El mail no se encuenatra ==3
             else {
-                return res.status(400).send('No se encuentra el email')
+                return res.status(400).send('No se encaduentra el email')
             }
         });
 
