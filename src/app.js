@@ -61,6 +61,6 @@ console.log('PROBANDO LA CONSOLA ESTA DFEL ORTO')
 
 const PORT = process.env.port
 app.listen(process.env.PORT, () => {
-    console.log("Tasdasdasd haz conectado, intensssta averiguar porque chorizo de puerto sale: ")
+    console.log("Tasdasdasd haz coneasdactado, intensssta averiguar porque chorizo de puerto sale: ")
 
 });
