@@ -57,7 +57,6 @@ io.on("connection", (socket) => {
         });
     });
 });
-console.log('PROBANDO LA CONSOLA ESTA DFEL ORTO')
 
 const PORT = process.env.port
 app.listen(process.env.PORT, () => {
