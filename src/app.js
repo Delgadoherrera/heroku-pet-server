@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 
 
-server.listen(4002);
+server.listen(3002);
 
 
 app.use('/', userApi);
