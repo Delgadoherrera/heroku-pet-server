@@ -58,8 +58,10 @@ io.on("connection", (socket) => {
     });
 });
 
-const PORT = process.env.port
-app.listen(process.env.PORT, () => {
-    console.log("servidor ON  ")
+/* const PORT = process.env.port */
+const PORT = 3001
+
+app.listen(PORT, () => {
+    console.log("servidor ON en puerto: ", 3001)
 
 });
