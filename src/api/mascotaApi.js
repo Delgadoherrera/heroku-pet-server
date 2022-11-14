@@ -192,7 +192,7 @@ router.post("/mascotas/nuevaMascotaPerdida", upload.single('file'), async (req, 
     }
     else {
         await Mascota.create({
-
+            nombre: '',
             idHumano: sent.id,
             colorPrimario: sent.colorPrimario,
             colorSecundario: sent.colorSecundario,
