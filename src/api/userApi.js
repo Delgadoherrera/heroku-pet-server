@@ -9,7 +9,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
- const sequelize = new Sequelize('missingpet', 'root', '', {
+ const sequelize = new Sequelize('pugeqes15yjpd2bk', 'rodc6x3xucy37gxc', '', {
     host: 'localhost',
     dialect: 'mysql',
 
