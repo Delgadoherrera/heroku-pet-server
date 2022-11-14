@@ -104,14 +104,29 @@ router.post("/user/register", async (req, res) => {
     let data = (req.body.formData)
     console.log(req.body.file.base64Data)
 
-    await Humano.create({
-        nombre: data.name,
-        apellido: data.apellido,
-        telefono: data.telefono,
-        email: data.email,
-        password: await bcryptjs.hashSync(req.body.formData.password, salt),
-        fotoPerfil: await req.body.file.base64Data
-    });
+    if (req.body.file.base64Data !== undefined){
+        await Humano.create({
+            nombre: data.name,
+            apellido: data.apellido,
+            telefono: data.telefono,
+            email: data.email,
+            password: await bcryptjs.hashSync(req.body.formData.password, salt),
+            fotoPerfil: await req.body.file.base64Data
+        });
+    }
+    else{
+        await Humano.create({
+            nombre: data.name,
+            apellido: data.apellido,
+            telefono: data.telefono,
+            email: data.email,
+            password: await bcryptjs.hashSync(req.body.formData.password, salt),
+            fotoPerfil: 'userWithNoAvatar'
+        });
+
+    }
+
+
 })
 
 
