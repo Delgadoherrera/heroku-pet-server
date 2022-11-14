@@ -62,6 +62,6 @@ io.on("connection", (socket) => {
 const PORT = 3001
 
 app.listen(PORT, () => {
-    console.log("servidor ON en puerto: ", 3001)
+    console.log("servidor ON sen puerto: ", 3001)
 
 });
