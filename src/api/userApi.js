@@ -104,7 +104,7 @@ router.post("/user/register", async (req, res) => {
     let data = (req.body.formData)
     console.log(req.body.file.base64Data)
 
-    if (req.body.file.base64Data !== undefined){
+    if (req.body.file.base64Data !== null) {
         await Humano.create({
             nombre: data.name,
             apellido: data.apellido,
@@ -114,7 +114,7 @@ router.post("/user/register", async (req, res) => {
             fotoPerfil: await req.body.file.base64Data
         });
     }
-    else{
+    else {
         await Humano.create({
             nombre: data.name,
             apellido: data.apellido,
