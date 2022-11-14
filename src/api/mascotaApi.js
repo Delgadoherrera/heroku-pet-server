@@ -111,10 +111,9 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
 })
 
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
+    console.log(req.body)
     let latitud = req.headers.latitude
     let longitud = req.headers.longitude
-    console.log(latitud)
-    console.log(longitud)
     const mascotasCercanas = []
 
 
@@ -216,7 +215,7 @@ router.post("/mascotas/nuevaMascotaPerdida", upload.single('file'), async (req, 
         res.status(200).send()
     }
 
- 
+
 
 
 })
