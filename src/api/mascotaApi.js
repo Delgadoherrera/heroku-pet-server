@@ -114,9 +114,8 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
     console.log(req.body)
     let latitud = req.headers.latitude
     let longitud = req.headers.longitude
+    console.log(req.headers)
     const mascotasCercanas = []
-
-
 
 
     Mascota.findAll({
