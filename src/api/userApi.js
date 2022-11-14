@@ -9,7 +9,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
- const sequelize = new Sequelize('pugeqes15yjpd2bk', 'rodc6x3xucy37gxc', '', {
+/*  const sequelize = new Sequelize('missingpet', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
 
@@ -20,7 +20,7 @@ const Op = Sequelize.Op;
         idle: 10000
     }
 }) 
-
+ */
 
 
 
@@ -134,32 +134,7 @@ router.get("/user/userDetail/:id", async (req, res) => {
     })
 })
 
-const tryBlob = 'Select fotoPerfil from humanos where idhumano ='
 
 
-router.get("/blob", async (req, res) => {
-    console.log(req.body)
-
-    sequelize.query(tryBlob + 6).then(function (data) {
-        /*      console.log(data)  */
-
-        const b = Buffer.from(JSON.stringify([data.fotoPerfil]));
-        console.log(b)
-        console.log('blobFile:', b.toString());
-
-
-
-        if (data) {
-            return res.status(200).send({ data: b })
-        }
-        else if (!data) {
-            console.log('No se han encontrado mascotas perdidas por tu zona')
-            return res.status(400)
-        }
-    }).catch((error) => {
-        console.log('error catch' + error)
-    })
-
-})
 module.exports = router;
 
