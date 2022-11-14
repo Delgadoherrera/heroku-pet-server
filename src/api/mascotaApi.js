@@ -124,7 +124,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
                 let distance = distanciaCoords(req.body.latitude, req.body.longitude, j.latPerdida, j.lngPerdida)
 
                 if (distance < 1) {
-                    /* console.log(j.nombre, 'esta cerca!') */
+                    console.log(j.nombre, 'esta cerca!')
                     mascotasCercanas.push(j)
                 }
                 else {
