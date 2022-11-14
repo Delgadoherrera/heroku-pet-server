@@ -173,7 +173,7 @@ router.post("/mascotas/nuevaMascotaPerdida", upload.single('file'), async (req, 
     console.log(sent.colorPrimario)
     if (sent.newLatitude) {
         await Mascota.create({
-
+            nombre: '',
             idHumano: sent.id,
             colorPrimario: sent.colorPrimario,
             colorSecundario: sent.colorSecundario,
