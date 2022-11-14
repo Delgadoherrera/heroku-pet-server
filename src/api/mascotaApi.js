@@ -111,10 +111,6 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
 })
 
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-    console.log(req.body)
-    let latitud = req.headers.latitude
-    let longitud = req.headers.longitude
-     console.log('latitude:',req.headers.latitude)
     const mascotasCercanas = []
 
 
@@ -125,7 +121,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 
 
             mascotas.forEach((j) => {
-                let distance = distanciaCoords(latitud, longitud, j.latPerdida, j.lngPerdida)
+                let distance = distanciaCoords(req.body.latitude, req.body.longitude, j.latPerdida, j.lngPerdida)
 
                 if (distance < 1) {
                     /* console.log(j.nombre, 'esta cerca!') */
