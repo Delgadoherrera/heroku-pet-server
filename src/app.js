@@ -12,7 +12,7 @@ const Mensaje = db.Mensaje;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-        origin: 'http://localhost:3000'
+        origin: '*'
     }
 });
 
@@ -50,11 +50,11 @@ io.on("connection", (socket) => {
             body,
             from: socket.id.slice(8),
         });
-        Mensaje.create({
+   /*      Mensaje.create({
             mensaje: body,
             idEmisor: idEmisor,
             idReceptor: idReceptor,
-        });
+        }); */
     });
 });
 
