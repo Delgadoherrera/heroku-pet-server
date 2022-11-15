@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 
-const sequelize = new Sequelize('missingpet', 'root', '', {
+const sequelize = new Sequelize('missingpet', 'root', 'nabuco12', {
     host: 'localhost',
     dialect: 'mysql',
 
