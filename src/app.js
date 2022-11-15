@@ -36,8 +36,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 
 
-server.listen(4000);
-
+/* server.listen(4000);
+ */
 
 app.use('/', userApi);
 app.use('/', mascotaApi);
