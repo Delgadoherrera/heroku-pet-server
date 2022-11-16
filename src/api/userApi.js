@@ -123,7 +123,7 @@ router.post("/user/register", async (req, res) => {
                     password: bcryptjs.hashSync(req.body.formData.password, salt),
                     fotoPerfil: req.body.file.base64Data
                 });
-                res.status(200)
+                /*         res.status(200) */
             }
             else {
                 Humano.create({
@@ -134,8 +134,18 @@ router.post("/user/register", async (req, res) => {
                     password: bcryptjs.hashSync(req.body.formData.password, salt),
                     fotoPerfil: 'userWithNoAvatar'
                 });
-                return res.status(200).send('Este mail puede utilizarse')
+                /* return res.status(200).send('Este mail puede utilizarse') */
             }
+
+            Humano.findAll({
+                where: {
+                    email: data.email,
+                }
+            }).then(humano => {
+                res.status(200).send({ data: humano })
+            })
+
+
         }
     }).catch((error) => {
         console.log('error catch' + error)
