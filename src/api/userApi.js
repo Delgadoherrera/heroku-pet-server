@@ -139,9 +139,10 @@ router.post("/user/register", async (req, res) => {
 
             Humano.findAll({
                 where: {
-                    email: data.email,
+                    email: req.body.formData.email,
                 }
             }).then(humano => {
+                console.log(humano)
                 res.status(200).send({ data: humano })
             })
 
