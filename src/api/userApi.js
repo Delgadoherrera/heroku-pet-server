@@ -123,7 +123,7 @@ router.post("/user/register", async (req, res) => {
                     password: bcryptjs.hashSync(req.body.formData.password, salt),
                     fotoPerfil: req.body.file.base64Data
                 });
-               return res.status(200).send()
+               return res.status(200).send('usuario creado')
             }
             else {
                 Humano.create({
@@ -134,7 +134,7 @@ router.post("/user/register", async (req, res) => {
                     password: bcryptjs.hashSync(req.body.formData.password, salt),
                     fotoPerfil: 'userWithNoAvatar'
                 });
-                return res.status(200).send()
+                return res.status(200).send('usuario creado')
             }
 
         }
