@@ -108,10 +108,10 @@ router.post("/user/register", async (req, res) => {
             email: data.email,
         }
     }).then(function (humano) {
-        if (humano) {
+        if (!humano) {
             return res.status(200).send('Porfavor ingresa otro email')
         }
-        else if (!humano) {
+        else if (humano) {
             console.log('Este email puede utilizarse')
             return res.status(200)
         }
