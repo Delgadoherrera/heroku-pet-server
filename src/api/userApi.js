@@ -114,7 +114,7 @@ router.post("/user/register", async (req, res) => {
         }
         else if (humano.length === 0) {
             console.log('Este email puede utilizarse')
-            return res.status(200)
+            return res.status(200).send('Este mail puede utilizarse')
         }
     }).catch((error) => {
         console.log('error catch' + error)
