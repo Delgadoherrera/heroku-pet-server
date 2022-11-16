@@ -109,41 +109,41 @@ router.post("/user/register", async (req, res) => {
         }
     }).then(function (humano) {
         console.log(humano)
-        if (!humano) {
+        if (humano.length > 0) {
             return res.status(200).send('Porfavor ingresa otro email')
         }
-        else if (humano) {
+        else if (humano.length === 0) {
             console.log('Este email puede utilizarse')
             return res.status(200)
         }
     }).catch((error) => {
         console.log('error catch' + error)
     })
-/* 
-    if (req.body.file.base64Data !== null) {
-        await Humano.create({
-            nombre: data.name,
-            apellido: data.apellido,
-            telefono: data.telefono,
-            email: data.email,
-            password: await bcryptjs.hashSync(req.body.formData.password, salt),
-            fotoPerfil: await req.body.file.base64Data
-        });
-        res.status(200)
-    }
-    else {
-        await Humano.create({
-            nombre: data.name,
-            apellido: data.apellido,
-            telefono: data.telefono,
-            email: data.email,
-            password: await bcryptjs.hashSync(req.body.formData.password, salt),
-            fotoPerfil: 'userWithNoAvatar'
-        });
-        res.status(200)
-
-    }
-     */
+    /* 
+        if (req.body.file.base64Data !== null) {
+            await Humano.create({
+                nombre: data.name,
+                apellido: data.apellido,
+                telefono: data.telefono,
+                email: data.email,
+                password: await bcryptjs.hashSync(req.body.formData.password, salt),
+                fotoPerfil: await req.body.file.base64Data
+            });
+            res.status(200)
+        }
+        else {
+            await Humano.create({
+                nombre: data.name,
+                apellido: data.apellido,
+                telefono: data.telefono,
+                email: data.email,
+                password: await bcryptjs.hashSync(req.body.formData.password, salt),
+                fotoPerfil: 'userWithNoAvatar'
+            });
+            res.status(200)
+    
+        }
+         */
 
 
 })
