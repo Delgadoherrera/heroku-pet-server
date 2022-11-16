@@ -103,7 +103,7 @@ const salt = 10
 router.post("/user/register", async (req, res) => {
     let data = (req.body.formData)
     console.log(req.body.file.base64Data)
-    Humano.findAll({
+    await Humano.findAll({
         where: {
             email: data.email,
         }
@@ -114,32 +114,34 @@ router.post("/user/register", async (req, res) => {
         }
         else if (humano.length === 0) {
             console.log('Este email puede utilizarse')
-            return res.status(200).send('Este mail puede utilizarse')
+            if (req.body.file.base64Data !== null) {
+                Humano.create({
+                    nombre: data.name,
+                    apellido: data.apellido,
+                    telefono: data.telefono,
+                    email: data.email,
+                    password: bcryptjs.hashSync(req.body.formData.password, salt),
+                    fotoPerfil: req.body.file.base64Data
+                });
+                res.status(200)
+            }
+            else {
+                Humano.create({
+                    nombre: data.name,
+                    apellido: data.apellido,
+                    telefono: data.telefono,
+                    email: data.email,
+                    password: bcryptjs.hashSync(req.body.formData.password, salt),
+                    fotoPerfil: 'userWithNoAvatar'
+                });
+                return res.status(200).send('Este mail puede utilizarse')
+            }
         }
     }).catch((error) => {
         console.log('error catch' + error)
     })
     /* 
-        if (req.body.file.base64Data !== null) {
-            await Humano.create({
-                nombre: data.name,
-                apellido: data.apellido,
-                telefono: data.telefono,
-                email: data.email,
-                password: await bcryptjs.hashSync(req.body.formData.password, salt),
-                fotoPerfil: await req.body.file.base64Data
-            });
-            res.status(200)
-        }
-        else {
-            await Humano.create({
-                nombre: data.name,
-                apellido: data.apellido,
-                telefono: data.telefono,
-                email: data.email,
-                password: await bcryptjs.hashSync(req.body.formData.password, salt),
-                fotoPerfil: 'userWithNoAvatar'
-            });
+        
             res.status(200)
     
         }
