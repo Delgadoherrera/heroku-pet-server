@@ -83,7 +83,7 @@ router.post("/user/login", async (req, res) => {
                     }
                     else if (emailVerify === usuario.email && key == false) {
                         // contraseña incaasdorrecta == 1
-                        return res.status(400).json('invalid password')
+                        return res.status(200).json('invalid password')
                     }
 
                 }).catch((error) => {
@@ -93,7 +93,7 @@ router.post("/user/login", async (req, res) => {
             }
             //El mail no se encuenatra ==3
             else {
-                return res.status(400).json('No se encuentra el email')
+                return res.status(200).json('No se encuentra el email')
             }
         });
 
