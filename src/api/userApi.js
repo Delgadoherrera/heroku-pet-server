@@ -103,7 +103,22 @@ const salt = 10
 router.post("/user/register", async (req, res) => {
     let data = (req.body.formData)
     console.log(req.body.file.base64Data)
-
+    Humano.findAll({
+        where: {
+            email: data.email,
+        }
+    }).then(function (humano) {
+        if (humano) {
+            return res.status(200).send('Porfavor ingresa otro email')
+        }
+        else if (!humano) {
+            console.log('Este email puede utilizarse')
+            return res.status(200)
+        }
+    }).catch((error) => {
+        console.log('error catch' + error)
+    })
+/* 
     if (req.body.file.base64Data !== null) {
         await Humano.create({
             nombre: data.name,
@@ -113,6 +128,7 @@ router.post("/user/register", async (req, res) => {
             password: await bcryptjs.hashSync(req.body.formData.password, salt),
             fotoPerfil: await req.body.file.base64Data
         });
+        res.status(200)
     }
     else {
         await Humano.create({
@@ -123,8 +139,10 @@ router.post("/user/register", async (req, res) => {
             password: await bcryptjs.hashSync(req.body.formData.password, salt),
             fotoPerfil: 'userWithNoAvatar'
         });
+        res.status(200)
 
     }
+     */
 
 
 })
