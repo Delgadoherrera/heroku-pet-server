@@ -21,7 +21,9 @@ const userApi = require('./api/userApi')
 const mascotaApi = require('./api/mascotaApi')
 const mensajesApi = require('./api/mensajesApi')
 
-
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
