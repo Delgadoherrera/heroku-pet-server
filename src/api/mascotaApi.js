@@ -57,7 +57,7 @@ router.post("/mascota/register", upload.single('file'), async (req, res) => {
     /*     let sent = JSON.parse(req.body.formDatas) */
     console.log(req.body)
     let sent = (req.body.formdata)
-   /*  await Mascota.create({
+    await Mascota.create({
         nombre: sent.nombre,
         idHumano: sent.id,
         colorPrimario: sent.colorPrimario,
@@ -68,7 +68,7 @@ router.post("/mascota/register", upload.single('file'), async (req, res) => {
         descripcion: sent.descripcionMascota,
         fotoMascota: req.body.file.base64Data
     });
-    res.status(200).send() */
+    res.status(200).send()
 })
 
 router.get("/mascotas/getById/:id", async (req, res) => {
