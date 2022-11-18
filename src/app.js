@@ -27,11 +27,7 @@ const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
 
-app.use(
-  cors({
-    origin: "*"
-  })
-);
+app.use(cors());
 /* app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header(
