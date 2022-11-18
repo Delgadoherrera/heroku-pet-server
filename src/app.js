@@ -66,8 +66,8 @@ app.use(
   express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
 );
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
-
+/* app.use(cors());
+ */
 server.listen(4000);
 
 app.use("/", userApi);
