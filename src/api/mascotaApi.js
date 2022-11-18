@@ -173,7 +173,7 @@ router.post("/mascotas/nuevaMascotaPerdida", upload.single('file'), async (req, 
     console.log(req.body)
 
 
-
+/* 
     let sent = req.body.formDatas
     console.log(sent.colorPrimario)
     if (sent.newLatitude) {
@@ -210,9 +210,9 @@ router.post("/mascotas/nuevaMascotaPerdida", upload.single('file'), async (req, 
             lngPerdida: sent.initialLongitude,
 
 
-        });
+        }); */
         res.status(200).send()
-    }
+/*     } */
 
 
 
