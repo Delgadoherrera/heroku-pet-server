@@ -42,7 +42,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return radioTierra * c;
 };
-
+/* 
 router.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -51,7 +51,7 @@ router.use(function (req, res, next) {
   );
   next();
 });
-
+ */
 router.post("/mascota/register", upload.single("file"), async (req, res) => {
   /*     let sent = JSON.parse(req.body.formDatas) */
   console.log(req.body);
