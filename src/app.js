@@ -27,17 +27,20 @@ const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
 
-/* app.use(
+app.use(
   cors({
     origin: "https://missingpets.art",
   })
-); */
-/* app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://missingpets.art"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  }); */
-  
+);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://missingpets.art"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
