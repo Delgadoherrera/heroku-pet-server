@@ -46,12 +46,12 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 };
 
 
-/* router.use(function (req, res, next) {
+router.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
- */
+
 
 router.post("/mascota/register", upload.single('file'), async (req, res) => {
     /*     let sent = JSON.parse(req.body.formDatas) */

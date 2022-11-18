@@ -1,69 +1,78 @@
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
+const express = require("express");
+const path = require("path");
+const cors = require("cors");
 const app = express();
 
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 
-const db = require("./database/models")
+const db = require("./database/models");
 const Mensaje = db.Mensaje;
-const server = require('http').createServer(app);
-const io = require('socket.io')(server, {
-    cors: {
-        origin: '*'
-    }
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
 });
 
-const session = require('express-session');
-const userApi = require('./api/userApi')
-const mascotaApi = require('./api/mascotaApi')
-const mensajesApi = require('./api/mensajesApi')
+const session = require("express-session");
+const userApi = require("./api/userApi");
+const mascotaApi = require("./api/mascotaApi");
+const mensajesApi = require("./api/mensajesApi");
 
-app.use(cors({
-    origin: ['https://missingpets.art', 'https://backend.missingpets.art', 'http://localhost:3000']
-}));
+app.use(
+  cors({
+    origin: "https://missingpets.art",
+  })
+);
 app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
-app.use(session({
-    secret: 'missingPetsssss',
+app.use(
+  session({
+    secret: "missingPetsssss",
     resave: true,
-    saveUninitialized: true
-}));
-app.use(express.json({ limit: "10mb", extended: true }))
-app.use(express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 }))
+    saveUninitialized: true,
+  })
+);
+app.use(express.json({ limit: "10mb", extended: true }));
+app.use(
+  express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
+);
 app.use(express.urlencoded({ extended: false }));
-app.use(cors())
+app.use(cors());
 
+server.listen(4000);
 
- server.listen(4000);
- 
-
-app.use('/', userApi);
-app.use('/', mascotaApi);
-app.use('/', mensajesApi);
+app.use("/", userApi);
+app.use("/", mascotaApi);
+app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
-    socket.on("message", (body, idEmisor, idReceptor) => {
-        console.log(body, idEmisor, idReceptor)
-        socket.broadcast.emit("message", {
-            body,
-            from: socket.id.slice(8),
-        });
-        /*  Mensaje.create({
+  socket.on("message", (body, idEmisor, idReceptor) => {
+    console.log(body, idEmisor, idReceptor);
+    socket.broadcast.emit("message", {
+      body,
+      from: socket.id.slice(8),
+    });
+    /*  Mensaje.create({
             mensaje: body,
             idEmisor: idEmisor,
             idReceptor: idReceptor,
         });  */
-    });
+  });
 });
 
 /* const PORT = process.env.port */
-const PORT = 3001
+const PORT = 3001;
 
 app.listen(PORT, () => {
-    console.log("servidor ON sen puerto: ", 3001)
-
+  console.log("servidor ON sen puerto: ", 3001);
 });
