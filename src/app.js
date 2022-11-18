@@ -29,7 +29,7 @@ const mensajesApi = require("./api/mensajesApi");
 
 app.use(
   cors({
-    origin: "https://missingpets.art",
+    origin:[ "https://missingpets.art","http://localhost:3000" ],
   })
 );
 app.use(function (req, res, next) {
