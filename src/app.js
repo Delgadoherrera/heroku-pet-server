@@ -22,7 +22,7 @@ const mascotaApi = require('./api/mascotaApi')
 const mensajesApi = require('./api/mensajesApi')
 
 app.use(cors({
-    origin: 'https://missingpets.art'
+    origin: ['https://missingpets.art', 'https://backend.missingpets.art']
 }));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, '../public')));
