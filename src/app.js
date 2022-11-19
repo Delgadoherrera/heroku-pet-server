@@ -19,13 +19,7 @@ const mensajesApi = require("./api/mensajesApi");
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(
-  bodyParser.urlencoded({
-    limit: "50mb",
-    extended: true,
-    parameterLimit: 50000,
-  })
-);
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors({ origin: "*", credentials: false }));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
@@ -37,13 +31,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(express.json({ limit: "10mb", extended: true }));
-/* app.use(
-  express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
-); */
-/* app.use(express.urlencoded({ extended: false })); */
-/* app.use(cors());
- */
+
 server.listen(4000);
 
 app.use("/", userApi);
