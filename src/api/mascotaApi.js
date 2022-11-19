@@ -42,16 +42,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return radioTierra * c;
 };
-/* 
-router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
- */
+
 router.post("/mascota/register", upload.single("file"), async (req, res) => {
   /*     let sent = JSON.parse(req.body.formDatas) */
   console.log(req.body);
@@ -178,8 +169,8 @@ router.post(
   "/mascotas/nuevaMascotaPerdida",
   upload.single("file"),
   async (req, res) => {
-    await console.log(req.body);
-    console.log('headers',req.headers)
+    console.log(req.body);
+    console.log("headers", req.headers);
 
     /* 
     let sent = req.body.formDatas
@@ -219,7 +210,7 @@ router.post(
 
 
         }); */
-   return res.status(200).send();
+    return res.status(200).send();
     /*     } */
   }
 );
