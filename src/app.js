@@ -25,7 +25,7 @@ app.use(
     parameterLimit: 50000,
   })
 );
-app.use(cors( origin: "*"))
+app.use(cors({ origin: "*" }));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
