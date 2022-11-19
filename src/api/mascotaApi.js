@@ -178,7 +178,7 @@ router.post(
   "/mascotas/nuevaMascotaPerdida",
   upload.single("file"),
   async (req, res) => {
-    console.log(req.body);
+    await console.log(req.body);
 
     /* 
     let sent = req.body.formDatas
@@ -218,7 +218,7 @@ router.post(
 
 
         }); */
-    res.status(200).send();
+   return res.status(200).send();
     /*     } */
   }
 );
