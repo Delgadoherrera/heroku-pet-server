@@ -169,46 +169,39 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
   console.log("headers", req.headers);
 
-  /
-    let sent = req.body.formDatas
-    console.log(sent.colorPrimario)
-    if (sent.newLatitude) {
-        await Mascota.create({
-            nombre: '',
-            idHumano: sent.id,
-            colorPrimario: sent.colorPrimario,
-            colorSecundario: sent.colorSecundario,
-            pesoAproximado: sent.pesoAproximado,
-            status: 3,
-            tipoMascota: sent.tipoMascota,
-            descripcion: sent.descripcionMascota,
-            fotoMascota: req.body.file.base64Data,
-            latPerdida: sent.newLatitude,
-            lngPerdida: sent.newLongitude,
+  let sent = req.body.formDatas;
 
-
-        });
-        res.status(200).send()
-
-    }
-    else {
-        await Mascota.create({
-            nombre: '',
-            idHumano: sent.id,
-            colorPrimario: sent.colorPrimario,
-            colorSecundario: sent.colorSecundario,
-            pesoAproximado: sent.pesoAproximado,
-            status: 3,
-            tipoMascota: sent.tipoMascota,
-            descripcion: sent.descripcionMascota,
-            fotoMascota: req.body.file.base64Data,
-            latPerdida: sent.initialLatitude,
-            lngPerdida: sent.initialLongitude,
-
-
-        }); 
-  return res.status(200).send();
-  /*     } */
+  if (sent.newLatitude) {
+    await Mascota.create({
+      nombre: "",
+      idHumano: sent.id,
+      colorPrimario: sent.colorPrimario,
+      colorSecundario: sent.colorSecundario,
+      pesoAproximado: sent.pesoAproximado,
+      status: 3,
+      tipoMascota: sent.tipoMascota,
+      descripcion: sent.descripcionMascota,
+      fotoMascota: req.body.file.base64Data,
+      latPerdida: sent.newLatitude,
+      lngPerdida: sent.newLongitude,
+    });
+    res.status(200).send();
+  } else {
+    await Mascota.create({
+      nombre: "",
+      idHumano: sent.id,
+      colorPrimario: sent.colorPrimario,
+      colorSecundario: sent.colorSecundario,
+      pesoAproximado: sent.pesoAproximado,
+      status: 3,
+      tipoMascota: sent.tipoMascota,
+      descripcion: sent.descripcionMascota,
+      fotoMascota: req.body.file.base64Data,
+      latPerdida: sent.initialLatitude,
+      lngPerdida: sent.initialLongitude,
+    });
+    return res.status(200).send();
+  }
 });
 router.post(
   "/mascotas/mascotaEncontrada/:id",
