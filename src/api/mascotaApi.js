@@ -169,7 +169,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
   console.log("headers", req.headers);
 
-  /* 
+  /
     let sent = req.body.formDatas
     console.log(sent.colorPrimario)
     if (sent.newLatitude) {
@@ -206,7 +206,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
             lngPerdida: sent.initialLongitude,
 
 
-        }); */
+        }); 
   return res.status(200).send();
   /*     } */
 });
