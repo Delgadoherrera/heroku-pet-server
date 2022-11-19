@@ -165,14 +165,11 @@ router.get("/mascotas/mascotaEncontrada", async (req, res) => {
     });
 });
 
-router.post(
-  "/mascotas/nuevaMascotaPerdida",
-  upload.single("file"),
-  async (req, res) => {
-    console.log(req.body);
-    console.log("headers", req.headers);
+router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
+  console.log(req.body);
+  console.log("headers", req.headers);
 
-    /* 
+  /* 
     let sent = req.body.formDatas
     console.log(sent.colorPrimario)
     if (sent.newLatitude) {
@@ -210,10 +207,9 @@ router.post(
 
 
         }); */
-    return res.status(200).send();
-    /*     } */
-  }
-);
+  return res.status(200).send();
+  /*     } */
+});
 router.post(
   "/mascotas/mascotaEncontrada/:id",
   upload.single("file"),
