@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-
+const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
 const server = require("http").createServer(app);
@@ -17,10 +17,11 @@ const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
 const mensajesApi = require("./api/mensajesApi");
 
-var bodyParser = require("body-parser");
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-app.use(cors({ origin: "*", credentials: false }));
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
+
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
