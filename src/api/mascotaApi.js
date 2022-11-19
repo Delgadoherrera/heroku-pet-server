@@ -179,6 +179,7 @@ router.post(
   upload.single("file"),
   async (req, res) => {
     await console.log(req.body);
+    console.log('headers',req.headers)
 
     /* 
     let sent = req.body.formDatas
