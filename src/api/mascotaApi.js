@@ -231,7 +231,24 @@ router.post("/mascotas/borrarMascota/:id", async (req, res) => {
     },
   });
 
-  res.status(200).send('success');
+  res.status(200).send("success");
+});
+
+router.post("/mascotas/editarMascota/:id", async (req, res) => {
+  console.log('params', req.params.id)
+  console.log('body', req.body)
+/*   await Mascota.update(
+    {
+
+    },
+    {
+      where: {
+        idMascota: req.params.id,
+      },
+    }
+  ); */
+
+  res.status(200).send("success");
 });
 
 module.exports = router;
