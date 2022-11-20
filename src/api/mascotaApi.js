@@ -235,21 +235,18 @@ router.post("/mascotas/borrarMascota/:id", async (req, res) => {
 });
 
 router.post("/mascotas/editarMascota/:id", async (req, res) => {
-  let sent = req.body.formdata
+  let sent = req.body.formdata;
   console.log("params", req.params.id);
   console.log("body", req.body);
-  console.log('sent', sent.nombre)
+  console.log("sent", sent.nombre);
   await Mascota.update(
     {
       nombre: sent.nombre,
-      idHumano: sent.id,
       colorPrimario: sent.colorPrimario,
       colorSecundario: sent.colorSecundario,
       pesoAproximado: sent.pesoAproximado,
-      status: 0,
       tipoMascota: sent.tipoMascota,
       descripcion: sent.descripcionMascota,
-      fotoMascota: req.body.file.base64Data,
     },
     {
       where: {
