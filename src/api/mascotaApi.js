@@ -225,10 +225,13 @@ router.post(
 );
 
 router.post("/mascotas/borrarMascota/:id", async (req, res) => {
-  console.log("reqBody", req.body);
-  console.log("id", req.params.id);
+  await Mascota.destroy({
+    where: {
+      idMascota: req.params.id,
+    },
+  });
 
-  res.status(200).send()
+  res.status(200).send('success');
 });
 
 module.exports = router;
