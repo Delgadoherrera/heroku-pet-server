@@ -224,4 +224,9 @@ router.post(
   }
 );
 
+router.post("/mascotas/borrarMascota/:id", async (req, res) => {
+  console.log("reqBody", req.body);
+  console.log("id", req.params.id);
+});
+
 module.exports = router;
