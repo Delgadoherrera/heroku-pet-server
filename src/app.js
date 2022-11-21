@@ -45,11 +45,11 @@ io.on("connection", (socket) => {
       body,
       from: socket.id.slice(8),
     });
-    /*  Mensaje.create({
-            mensaje: body,
-            idEmisor: idEmisor,
-            idReceptor: idReceptor,
-        });  */
+    Mensaje.create({
+      mensaje: body,
+      idEmisor: idEmisor,
+      idReceptor: idReceptor,
+    });
   });
 });
 
