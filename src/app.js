@@ -38,11 +38,6 @@ app.use("/", userApi);
 app.use("/", mascotaApi);
 app.use("/", mensajesApi);
 
-const objetoFecha = Date.now();
-const nowDate = new Date(objetoFecha);
-let fechaMensaje = nowDate.toLocaleDateString('en-ZA');
-
-
 io.on("connection", (socket) => {
   socket.on("message", (body, idEmisor, idReceptor) => {
     console.log(body, idEmisor, idReceptor);
@@ -50,11 +45,15 @@ io.on("connection", (socket) => {
       body,
       from: socket.id.slice(8),
     });
+    const objetoFecha = Date.now();
+    const nowDate = new Date(objetoFecha);
+    let fechaMensaje = nowDate.toLocaleDateString("en-ZA");
+
     Mensaje.create({
       mensaje: body,
       idEmisor: idEmisor,
       idReceptor: idReceptor,
-      fechaMensaje: fechaMensaje
+      fechaMensaje: fechaMensaje,
     });
   });
 });
