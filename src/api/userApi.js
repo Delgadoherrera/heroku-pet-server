@@ -57,7 +57,7 @@ router.post("/user/login", async (req, res) => {
         .then(await function (usuario) {
             if (usuario) {
                 const token = jwt.sign(
-                    { user_id: user._id, email }, // porque esta variable puede ejecutarse de esta manera_ ._id, email
+                    { user_id: usuario._id, email }, // porque esta variable puede ejecutarse de esta manera_ ._id, email
                     process.env.TOKEN_KEY,
                     {
                       expiresIn: "2h",
@@ -79,6 +79,7 @@ router.post("/user/login", async (req, res) => {
                             id: usuario.idHumano,
                             fotoPerfil: usuario.fotoPerfil
                         }
+                        usuario.token= token
                         return res.status(200).json({
                             token: token,
                             dataUser: dataUser
