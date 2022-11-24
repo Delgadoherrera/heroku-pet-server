@@ -36,8 +36,8 @@ app.use(
 
 server.listen(4000);
 app.use(cors({ origin: "*" }));
-app.use("/", auth, userApi);
-app.use("/", mascotaApi);
+app.use("/", userApi);
+app.use("/",auth, mascotaApi);
 app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
