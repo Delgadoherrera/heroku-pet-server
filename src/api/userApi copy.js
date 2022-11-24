@@ -56,13 +56,10 @@ router.post("/user/login", async (req, res) => {
     })
         .then(await function (usuario) {
             if (usuario) {
-                const token = jwt.sign(
-                    { user_id: user._id, email }, // porque esta variable puede ejecutarse de esta manera_ ._id, email
-                    process.env.TOKEN_KEY,
-                    {
-                      expiresIn: "2h",
-                    }
-                  );
+                const token = jwt.sign({
+                    email: usuario.email,
+                    id: usuario.id
+                }, "algoScreto", { expiresIn: '360m' });
                 let dbPassword = usuario.password;
                 let key = bcryptjs.compareSync(password, dbPassword);
                 Humano.findOne({
