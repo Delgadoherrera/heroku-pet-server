@@ -59,6 +59,7 @@ router.post("/user/login", async (req, res) => {
                 const token = jwt.sign(
                     { user_id: usuario.id, email: usuario.email }, // porque esta variable puede ejecutarse de esta manera_ ._id, email
                     process.env.TOKEN_KEY,
+                    "algoScreto",
                     {
                       expiresIn: "2h",
                     }
