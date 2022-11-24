@@ -13,6 +13,8 @@ const io = require("socket.io")(server, {
   },
 });
 
+const auth = require("./middlewares/auth");
+
 const session = require("express-session");
 const userApi = require("./api/userApi");
 const mascotaApi = require("./api/mascotaApi");
@@ -34,7 +36,7 @@ app.use(
 
 server.listen(4000);
 app.use(cors({ origin: "*" }));
-app.use("/", userApi);
+app.use("/", auth, userApi);
 app.use("/", mascotaApi);
 app.use("/", mensajesApi);
 
