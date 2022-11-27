@@ -271,4 +271,14 @@ router.get("/morfando", async (req, res) => {
 
 router.get("/mascotas/getMyPets/:email", async (req, res) => {
   console.log(req.params.email);
+  await Mascota.findAll({
+    where: {
+      email: req.params.email,
+      status: { [Op.ne]: 3 },
+    },
+  }).then(
+    await function (mascotas) {
+      return res.status(200).send({ data: mascotas });
+    }
+  );
 });
