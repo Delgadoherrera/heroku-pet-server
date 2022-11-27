@@ -46,7 +46,7 @@ const upload = multer({ storage })
 
 router.post("/user/login", async (req, res) => {
     console.log('req.body', req.body)
-
+/* 
     let emailVerify = req.body.email
     let password = req.body.password
     await Humano.findOne({
@@ -57,7 +57,7 @@ router.post("/user/login", async (req, res) => {
         .then(await function (usuario) {
             if (usuario) {
                 const token = jwt.sign(
-                    { user_id: usuario._id, email: usuario.email }, // porque esta variable puede ejecutarse de esta manera_ ._id, email
+                    { user_id: usuario._id, email: usuario.email },
                     "algoSecreto",
                     {
                       expiresIn: "2h",
@@ -86,20 +86,17 @@ router.post("/user/login", async (req, res) => {
                         })
                     }
                     else if (emailVerify === usuario.email && key == false) {
-                        // contraseña incaasdorrecta == 1
                         return res.status(200).json('invalid password')
                     }
 
                 }).catch((error) => {
-                    /* console.log('eraaaaror catch' + error) */
                 })
 
             }
-            //El mail no se encuenatra ==3
             else {
                 return res.status(200).json('No se encuentra el email')
             }
-        });
+        }); */
 
 }
 )
