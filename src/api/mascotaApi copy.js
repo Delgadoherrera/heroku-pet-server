@@ -261,14 +261,8 @@ router.post("/mascotas/editarMascota/:id", async (req, res) => {
 module.exports = router;
 
 router.get("/morfando", async (req, res) => {
-  console.log("req.body", req.body);
-  console.log("req", req);
+  console.log('req.body', req.body)
+  console.log('req', req)
 
   res.status(200).send("success");
-});
-
-// NEW DESIGN
-
-router.get("/mascotas/getMyPets/:email", async (req, res) => {
-  console.log(req.params.email);
 });
