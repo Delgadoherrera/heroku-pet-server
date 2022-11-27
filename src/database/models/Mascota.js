@@ -6,7 +6,7 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        idHumano: {
+        emailMascota: {
             type: dataTypes.STRING
         },
         nombre: {
