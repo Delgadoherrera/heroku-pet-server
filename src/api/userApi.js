@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage })
 
-router.post("/user/login", async (req, res) => {
+router.get("/user/login", async (req, res) => {
     console.log('req.headers', req.headers)
     console.log('req.body', req.body)
 
