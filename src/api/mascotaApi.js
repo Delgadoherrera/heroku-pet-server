@@ -49,7 +49,7 @@ router.post("/mascota/register", upload.single("file"), async (req, res) => {
   let sent = req.body.formdata;
   await Mascota.create({
     nombre: sent.nombre,
-    idHumano: sent.id,
+    emailMascota: sent.email,
     colorPrimario: sent.colorPrimario,
     colorSecundario: sent.colorSecundario,
     pesoAproximado: sent.pesoAproximado,
