@@ -273,8 +273,8 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
   console.log(req.params.email);
   await Mascota.findAll({
     where: {
-      /* emailMascota: 'delgado.luciano.herrera@gmail.com', */
-      status: { [Op.ne]: 3 },
+      emailMascota: 'delgado.luciano.herrera@gmail.com',
+/*       status: { [Op.ne]: 3 }, */
     },
   }).then(
     await function (mascotas) {
