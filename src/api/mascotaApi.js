@@ -174,7 +174,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   if (sent.newLatitude) {
     await Mascota.create({
       nombre: "",
-      idHumano: sent.id,
+      emailMascota: sent.emailMascota,
       colorPrimario: sent.colorPrimario,
       colorSecundario: sent.colorSecundario,
       pesoAproximado: sent.pesoAproximado,
