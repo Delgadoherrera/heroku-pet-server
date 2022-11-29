@@ -189,7 +189,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   } else {
     await Mascota.create({
       nombre: "",
-      idHumano: sent.id,
+      emailMascota: sent.emailMascota,
       colorPrimario: sent.colorPrimario,
       colorSecundario: sent.colorSecundario,
       pesoAproximado: sent.pesoAproximado,
