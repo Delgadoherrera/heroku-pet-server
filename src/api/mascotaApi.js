@@ -108,8 +108,8 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   res.status(200).send();
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log(req.headers.distanceslider)
-  console.log(req.body)
+  console.log(req.headers.distanceslider);
+  console.log(req.body);
   const mascotasCercanas = [];
 
   Mascota.findAll({
@@ -169,7 +169,17 @@ router.get("/mascotas/mascotaEncontrada", async (req, res) => {
 
 router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
-  console.log("headers", req.headers);
+
+  let lugarEncontrada =
+    `${req.body.lugarEncontrado[0]}` +
+    " " +
+    `${req.body.lugarEncontrado[1]}` +
+    " " +
+    `${req.body.lugarEncontrado[2]}` +
+    " " +
+    `${req.body.lugarEncontrado[3]}` +
+    " " +
+    console.log("Lugar encontrada: ", lugarEncontrada);
 
   let sent = req.body.formDatas;
 
@@ -259,7 +269,6 @@ router.post("/mascotas/editarMascota/:id", async (req, res) => {
 
   res.status(200).send("success");
 });
-
 
 router.get("/morfando", async (req, res) => {
   console.log("req.body", req.body);
