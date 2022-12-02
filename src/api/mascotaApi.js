@@ -58,6 +58,8 @@ router.post("/mascota/register", upload.single("file"), async (req, res) => {
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcionMascota,
     fotoMascota: req.body.file.base64Data,
+    geoAdress : 'No está perdida'
+
      
   });
   res.status(200).send();
