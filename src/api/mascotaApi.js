@@ -109,6 +109,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
   console.log(req.headers.distanceSlider)
+  console.log(req.body)
   const mascotasCercanas = [];
 
   Mascota.findAll({
