@@ -170,15 +170,8 @@ router.get("/mascotas/mascotaEncontrada", async (req, res) => {
 router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
 
-  let lugarEncontrada =
-    `${req.body.lugarEncontrado[0]}` +
-    " " +
-    `${req.body.lugarEncontrado[1]}` +
-    " " +
-    `${req.body.lugarEncontrado[2]}` +
-    " " +
-    `${req.body.lugarEncontrado[3]}` +
-    " " +
+  let lugarEncontrada = req.body.lugarEncontrada.join(' ')
+  
     console.log("Lugar encontrada: ", lugarEncontrada);
 
   let sent = req.body.formDatas;
