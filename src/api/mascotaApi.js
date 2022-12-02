@@ -45,7 +45,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 
 router.post("/mascota/register", upload.single("file"), async (req, res) => {
   /*     let sent = JSON.parse(req.body.formDatas) */
-  
+
   console.log(req.body);
   let sent = req.body.formdata;
   await Mascota.create({
@@ -58,9 +58,7 @@ router.post("/mascota/register", upload.single("file"), async (req, res) => {
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcionMascota,
     fotoMascota: req.body.file.base64Data,
-    geoAdress : 'No está perdida'
-
-     
+    geoAdress: "No está perdida",
   });
   res.status(200).send();
 });
@@ -174,45 +172,27 @@ router.get("/mascotas/mascotaEncontrada", async (req, res) => {
 router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
   console.log(req.body);
 
-  let lugarEncontrada = req.body.lugarEncontrado.join(',')
-  
-    console.log("Lugar encontrada: ", lugarEncontrada);
+  let lugarEncontrada = req.body.lugarEncontrado.join(",");
+
+  console.log("Lugar encontrada: ", lugarEncontrada);
 
   let sent = req.body.formDatas;
 
-  if (sent.newLatitude) {
-    await Mascota.create({
-      nombre: "",
-      emailMascota: sent.emailMascota,
-      colorPrimario: sent.colorPrimario,
-      colorSecundario: sent.colorSecundario,
-      pesoAproximado: sent.pesoAproximado,
-      status: 3,
-      tipoMascota: sent.tipoMascota,
-      descripcion: sent.descripcionMascota,
-      fotoMascota: req.body.file.base64Data,
-      latPerdida: sent.newLatitude,
-      lngPerdida: sent.newLongitude,
-      geoAdress : lugarEncontrada
-    });
-    res.status(200).send();
-  } else {
-    await Mascota.create({
-      nombre: "",
-      emailMascota: sent.emailMascota,
-      colorPrimario: sent.colorPrimario,
-      colorSecundario: sent.colorSecundario,
-      pesoAproximado: sent.pesoAproximado,
-      status: 3,
-      tipoMascota: sent.tipoMascota,
-      descripcion: sent.descripcionMascota,
-      fotoMascota: req.body.file.base64Data,
-      latPerdida: sent.initialLatitude,
-      lngPerdida: sent.initialLongitude,
-      geoAdress : lugarEncontrada
-    });
-    return res.status(200).send();
-  }
+  await Mascota.create({
+    nombre: "",
+    emailMascota: sent.emailMascota,
+    colorPrimario: sent.colorPrimario,
+    colorSecundario: sent.colorSecundario,
+    pesoAproximado: sent.pesoAproximado,
+    status: 3,
+    tipoMascota: sent.tipoMascota,
+    descripcion: sent.descripcionMascota,
+    fotoMascota: req.body.file.base64Data,
+    latPerdida: sent.newLatitude,
+    lngPerdida: sent.newLongitude,
+    geoAdress: lugarEncontrada,
+  });
+  res.status(200).send();
 });
 router.post(
   "/mascotas/mascotaEncontrada/:id",
