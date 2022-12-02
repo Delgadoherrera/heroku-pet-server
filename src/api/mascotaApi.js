@@ -108,7 +108,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   res.status(200).send();
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log(req.headers.distanceSlider)
+  console.log(req.headers.distanceslider)
   console.log(req.body)
   const mascotasCercanas = [];
 
@@ -125,7 +125,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
             j.lngPerdida
           );
 
-          if (distance < req.headers.distanceSlider) {
+          if (distance < req.headers.distanceslider) {
             console.log(j.nombre, "esta cerca!");
             mascotasCercanas.push(j);
           } else {
