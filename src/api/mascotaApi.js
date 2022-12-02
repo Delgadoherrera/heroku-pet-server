@@ -39,7 +39,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
   let a =
     Math.pow(Math.sin(difLat / 2.0), 2) +
     Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(difLng / 2.0), 2);
-  let c = 1 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return radioTierra * c;
 };
 
