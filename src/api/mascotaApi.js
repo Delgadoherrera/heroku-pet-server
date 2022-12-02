@@ -45,6 +45,7 @@ const distanciaCoords = (lat1, lon1, lat2, lon2) => {
 
 router.post("/mascota/register", upload.single("file"), async (req, res) => {
   /*     let sent = JSON.parse(req.body.formDatas) */
+  
   console.log(req.body);
   let sent = req.body.formdata;
   await Mascota.create({
@@ -57,6 +58,7 @@ router.post("/mascota/register", upload.single("file"), async (req, res) => {
     tipoMascota: sent.tipoMascota,
     descripcion: sent.descripcionMascota,
     fotoMascota: req.body.file.base64Data,
+     
   });
   res.status(200).send();
 });
@@ -189,6 +191,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
       fotoMascota: req.body.file.base64Data,
       latPerdida: sent.newLatitude,
       lngPerdida: sent.newLongitude,
+      geoAdress : lugarEncontrada
     });
     res.status(200).send();
   } else {
@@ -204,6 +207,7 @@ router.post("/mascotas/nuevaMascotaPerdida", async (req, res) => {
       fotoMascota: req.body.file.base64Data,
       latPerdida: sent.initialLatitude,
       lngPerdida: sent.initialLongitude,
+      geoAdress : lugarEncontrada
     });
     return res.status(200).send();
   }

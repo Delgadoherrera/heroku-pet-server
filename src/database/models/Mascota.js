@@ -45,6 +45,9 @@ module.exports = (sequelize, dataTypes) => {
         lngEncontrada: {
             type: dataTypes.DECIMAL
         },
+        geoAdress: {
+            type: dataTypes.STRING
+        },
     };
     let config = {
         tableName: 'mascotas',
