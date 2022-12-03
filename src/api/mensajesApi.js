@@ -62,6 +62,22 @@ const reqForQuery2 = "  and a.emailReceptor ="
 router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
     let id = req.params.id
 
+    await Mensaje.findAll({
+        where: {
+             emailReceptor: id, emailEmisor: idEmisor ,
+                
+        /*         { idReceptor: idEmisor, idEmisor: id }  */
+
+        }}).then(mensajes=>{
+            return res.status(200).send(mensajes)
+        })
+    /*     order: [
+            ['id', 'DESC'],
+
+
+        ], */
+    })
+/* 
     sequelize.query(messageByReceptor2 + id).then(function (mensajes) {
 
 
@@ -75,7 +91,7 @@ router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
     }).catch((error) => {
         console.log('error catch' + error)
     })
-
+ */
 })
 
 
