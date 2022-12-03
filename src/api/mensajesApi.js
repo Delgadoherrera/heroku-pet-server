@@ -57,8 +57,7 @@ const messageByReceptor2 =
 const reqForQuery2 = "  and a.emailReceptor =";
 
 router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
-  let id = req.params.id;
-
+ console.log(req.params)
   await Mensaje.findAll({
     where: {
       emailReceptor: id,
