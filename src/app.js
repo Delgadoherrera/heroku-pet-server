@@ -37,12 +37,12 @@ app.use(
 server.listen(4000);
 app.use(cors({ origin: "*" }));
 app.use("/", userApi);
-app.use("/",/* auth */ mascotaApi);
+app.use("/", /* auth */ mascotaApi);
 app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
   socket.on("message", (body, idEmisor, idReceptor) => {
-    console.log('DATOS DESDE APP',body, idEmisor, idReceptor);
+    console.log("DATOS DESDE APP", body, idEmisor, idReceptor);
     socket.broadcast.emit("message", {
       body,
       from: socket.id.slice(8),
@@ -61,8 +61,8 @@ io.on("connection", (socket) => {
 });
 
 /* const PORT = process.env.port */
-const PORT = 3001;
+const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log("servidor ON sen puerto: ", 3001);
+  console.log("servidor ON sen puerto: ", 3000);
 });
