@@ -39,8 +39,8 @@ router.post("/mensajes/nuevoMensaje/", async (req, res) => {
 
   await Mensaje.create({
     mensaje: req.body.msg.msg,
-    idEmisor: req.body.emisor,
-    idReceptor: req.body.receptor,
+    emailEmisor: req.body.emisor,
+    emailReceptor: req.body.receptor,
     fechaMensaje: req.body.date,
   });
   res.status(200).send();
