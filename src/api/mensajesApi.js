@@ -42,13 +42,13 @@ const sequelize = new Sequelize('missingPets', 'root', 'nabuco12', {
 router.post("/mensajes/nuevoMensaje/", async (req, res) => {
     console.log(req.body)
 
-    await Mensaje.create({
+/*     await Mensaje.create({
         mensaje: req.body.msg.msg,
-        idEmisor: req.body.emisor,
-        idReceptor: req.body.receptor,
+        emailEmisor: req.body.emisor,
+        emailReceptor: req.body.receptor,
         fechaMensaje: req.body.date,
     });
-    res.status(200).send()
+    res.status(200).send() */
 })
 
 const modelQuery = "select a.mensaje, b.nombre, c.nombre from mensajes a left join humanos b on b.email = a.idEmisor left join humanos c on c.idhumano = a.idReceptor where a.idEmisor ="
