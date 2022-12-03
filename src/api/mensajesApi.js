@@ -62,8 +62,6 @@ router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
   await Mensaje.findAll({
     where: {
       emailReceptor: id,
-      emailEmisor: idEmisor,
-
       /*         { idReceptor: idEmisor, idEmisor: id }  */
     },
   }).then((mensajes) => {
