@@ -97,8 +97,8 @@ router.get("/mensajes/getMessagesById/:id/:idEmisor", async (req, res) => {
   await Mensaje.findAll({
     where: {
       [Op.or]: [
-        { idReceptor: id, idEmisor: idEmisor },
-        { idReceptor: idEmisor, idEmisor: id },
+        { emailReceptor: id, emailEmisor: idEmisor },
+        { emailReceptor: idEmisor, emailEmisor: id },
       ],
     },
     order: [["id", "DESC"]],
