@@ -42,23 +42,27 @@ const sequelize = new Sequelize('missingPets', 'root', 'nabuco12', {
 router.post("/mensajes/nuevoMensaje/", async (req, res) => {
     console.log(req.body)
 
-/*     await Mensaje.create({
+    await Mensaje.create({
         mensaje: req.body.msg.msg,
-        emailEmisor: req.body.emisor,
-        emailReceptor: req.body.receptor,
+        idEmisor: req.body.emisor,
+        idReceptor: req.body.receptor,
         fechaMensaje: req.body.date,
     });
-    res.status(200).send() */
+    res.status(200).send()
 })
 
-const modelQuery = "select a.mensaje, b.nombre, c.nombre from mensajes a left join humanos b on b.email = a.idEmisor left join humanos c on c.idhumano = a.idReceptor where a.idEmisor ="
-const messageByReceptor = "select a.mensaje, b.nombre , c.email from mensajes a left join humanos b on b.email =a.email left join humanos c on c.email =b.email where a.email = "
-const reqForQuery = "  and a.email ="
+const modelQuery = "select a.mensaje, b.nombre, c.nombre from mensajes a left join humanos b on b.idHumano = a.idEmisor left join humanos c on c.idhumano = a.idReceptor where a.idEmisor ="
+const messageByReceptor = "select a.mensaje, b.nombre , c.idHumano from mensajes a left join humanos b on b.idHumano =a.idEmisor left join humanos c on c.idHumano =b.idhumano where a.idReceptor = "
+const reqForQuery = "  and a.idReceptor ="
+
+const messageByReceptor2 = "select a.mensaje,c.email from mensajes where a.emailReceptor ="
+const reqForQuery2 = "  and a.emailReceptor ="
+
 
 router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
     let id = req.params.id
 
-    sequelize.query(messageByReceptor + id).then(function (mensajes) {
+    sequelize.query(messageByReceptor2 + id).then(function (mensajes) {
 
 
         if (mensajes) {
@@ -82,7 +86,7 @@ router.get("/mensajes/getMessagesById/:id/:idEmisor", async (req, res) => {
 
     await Mensaje.findAll({
         where: {
-            [Op.or]: [{ emailReceptor: id, emailEmisor: idEmisor },{ emailReceptor: idEmisor, emailEmisor: id } ],
+            [Op.or]: [{ idReceptor: id, idEmisor: idEmisor },{ idReceptor: idEmisor, idEmisor: id } ],
 
         },
         order: [
