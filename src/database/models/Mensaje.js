@@ -12,11 +12,11 @@ module.exports = (sequelize, dataTypes) => {
         fechaMensaje: {
             type: dataTypes.DATE
         },
-        idEmisor: {
-            type: dataTypes.INTEGER
+        emailEmisor: {
+            type: dataTypes.STRING
         },
-        idReceptor: {
-            type: dataTypes.INTEGER
+        emailReceptor: {
+            type: dataTypes.STRING
         },
     };
     let config = {

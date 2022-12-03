@@ -51,9 +51,9 @@ router.post("/mensajes/nuevoMensaje/", async (req, res) => {
     res.status(200).send()
 })
 
-const modelQuery = "select a.mensaje, b.nombre, c.nombre from mensajes a left join humanos b on b.idHumano = a.idEmisor left join humanos c on c.idhumano = a.idReceptor where a.idEmisor ="
-const messageByReceptor = "select a.mensaje, b.nombre , c.idHumano from mensajes a left join humanos b on b.idHumano =a.idEmisor left join humanos c on c.idHumano =b.idhumano where a.idReceptor = "
-const reqForQuery = "  and a.idReceptor ="
+const modelQuery = "select a.mensaje, b.nombre, c.nombre from mensajes a left join humanos b on b.email = a.idEmisor left join humanos c on c.idhumano = a.idReceptor where a.idEmisor ="
+const messageByReceptor = "select a.mensaje, b.nombre , c.email from mensajes a left join humanos b on b.email =a.email left join humanos c on c.email =b.email where a.email = "
+const reqForQuery = "  and a.email ="
 
 router.get("/mensajes/getAllMyMsg/:id", async (req, res) => {
     let id = req.params.id
@@ -82,7 +82,7 @@ router.get("/mensajes/getMessagesById/:id/:idEmisor", async (req, res) => {
 
     await Mensaje.findAll({
         where: {
-            [Op.or]: [{ idReceptor: id, idEmisor: idEmisor },{ idReceptor: idEmisor, idEmisor: id } ],
+            [Op.or]: [{ emailReceptor: id, emailEmisor: idEmisor },{ emailReceptor: idEmisor, emailEmisor: id } ],
 
         },
         order: [
