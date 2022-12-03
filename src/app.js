@@ -42,7 +42,7 @@ app.use("/", mensajesApi);
 
 io.on("connection", (socket) => {
   socket.on("message", (body, idEmisor, idReceptor) => {
-    console.log(body, idEmisor, idReceptor);
+    console.log('DATOS DESDE APP',body, idEmisor, idReceptor);
     socket.broadcast.emit("message", {
       body,
       from: socket.id.slice(8),
