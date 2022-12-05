@@ -97,13 +97,13 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.sendLocation);
    let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
     {
-      latPerdida: req.body[req.body.sendLocation.length - 1].latitude,
-      lngPerdida: req.body[req.body.sendLocation.length - 1].longitude,
+      latPerdida: req.body.sendLocation[req.body.sendLocation.length - 1].latitude,
+      latPerdida: req.body.sendLocation[req.body.sendLocation.length - 1].longitude,
       geoAdress: lugarEncontrada,
 
       status: 1,
