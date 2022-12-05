@@ -98,13 +98,12 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
 
 router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   console.log(req.body);
-  /*  console.log('mascota con nueva location') */
-/*   let lugarEncontrada = req.body.lugarEncontrado.join(",");
+   let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
     {
-      latPerdida: req.body[req.body.length - 1].latitude,
-      lngPerdida: req.body[req.body.length - 1].longitude,
+      latPerdida: req.body[req.body.sendLocation.length - 1].latitude,
+      lngPerdida: req.body[req.body.sendLocation.length - 1].longitude,
       geoAdress: lugarEncontrada,
 
       status: 1,
@@ -112,7 +111,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
     {
       where: { idMascota: req.params.id },
     }
-  ).catch((error) => res.send(error)); */
+  ).catch((error) => res.send(error)); 
   res.status(200).send();
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
