@@ -97,7 +97,7 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
-  console.log(req.body.sendLocation);
+  console.log(req.body);
    let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
