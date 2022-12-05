@@ -78,6 +78,9 @@ router.get("/mascotas/getById/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
+  console.log(req.body)
+  let lugarEncontrada = req.body.lugarEncontrado.join(",");
+
   /*     console.log('mascota nueva con location default')
         console.log(req.body.latitude)
         console.log(req.params.id) */
@@ -106,6 +109,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
       latPerdida: req.body[req.body.length - 1].latitude,
       lngPerdida: req.body[req.body.length - 1].longitude,
       geoAdress: lugarEncontrada,
+
       status: 1,
     },
     {
