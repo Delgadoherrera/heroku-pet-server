@@ -78,9 +78,7 @@ router.get("/mascotas/getById/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
-  console.log(req.body);
-  console.log(req.body.state);
-  let lugarEncontrada = req.body.lugarEncontrado.join(",");
+   let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
     {

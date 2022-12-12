@@ -103,10 +103,11 @@ router.get("/user/login", async (req, res) => {
 }
 )
 const salt = 10
-router.post("/user/register", async (req, res) => {
-    let data = (req.body.formData)
-    console.log(req.body.file.base64Data)
-    await Humano.findAll({
+router.post("/user/create", async (req, res) => {
+    console.log(req.body)
+/*     let data = (req.body.formData)
+    console.log(req.body.file.base64Data) */
+/*     await Humano.findAll({
         where: {
             email: data.email,
         }
@@ -143,7 +144,7 @@ router.post("/user/register", async (req, res) => {
         }
     }).catch((error) => {
         console.log('error catch' + error)
-    })
+    }) */
 })
 
 
