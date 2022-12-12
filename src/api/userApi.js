@@ -145,6 +145,7 @@ router.post("/user/create", async (req, res) => {
     }).catch((error) => {
         console.log('error catch' + error)
     }) */
+    res.status(200).send('hey')
 })
 
 
