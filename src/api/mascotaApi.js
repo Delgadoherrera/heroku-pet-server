@@ -78,7 +78,7 @@ router.get("/mascotas/getById/:id", async (req, res) => {
 });
 
 router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
-   let lugarEncontrada = req.body.lugarEncontrado.join(",");
+  let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
     {
@@ -97,12 +97,14 @@ router.post("/mascotas/mascotaPerdida/:id", async (req, res) => {
 
 router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   console.log(req.body);
-   let lugarEncontrada = req.body.lugarEncontrado.join(",");
+  let lugarEncontrada = req.body.lugarEncontrado.join(",");
 
   Mascota.update(
     {
-      latPerdida: req.body.sendLocation[req.body.sendLocation.length - 1].latitude,
-      lngPerdida: req.body.sendLocation[req.body.sendLocation.length - 1].longitude,
+      latPerdida:
+        req.body.sendLocation[req.body.sendLocation.length - 1].latitude,
+      lngPerdida:
+        req.body.sendLocation[req.body.sendLocation.length - 1].longitude,
       geoAdress: lugarEncontrada,
 
       status: 1,
@@ -110,12 +112,12 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
     {
       where: { idMascota: req.params.id },
     }
-  ).catch((error) => res.send(error)); 
+  ).catch((error) => res.send(error));
   res.status(200).send();
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
   console.log(req.headers.distanceslider);
-  console.log(req.headers)
+  console.log(req.headers);
   console.log(req.body);
   const mascotasCercanas = [];
 
@@ -254,7 +256,6 @@ router.post("/mascotas/editarMascota/:id", async (req, res) => {
   res.status(200).send("success");
 });
 
-
 // NEW DESIGN
 
 router.get("/mascotas/getMyPets/:email", async (req, res) => {
@@ -271,24 +272,32 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
   );
 });
 router.post("/mascotas/adopcion/:id", async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
 
- Mascota.update(
-   {
+  if (req.headers.adoptar === true) {
+    Mascota.update(
+      {
+        status: 4,
+      },
+      {
+        where: { idMascota: req.params.id },
+      }
+    ).catch((error) => res.send(error));
+  }
+  if (req.headers.adoptar === false) {
+    Mascota.update(
+      {
+        status: 0,
+      },
+      {
+        where: { idMascota: req.params.id },
+      }
+    ).catch((error) => res.send(error));
+  }
 
-     status: 4,
-   },
-   {
-     where: { idMascota: req.params.id },
-   }
- ).catch((error) => res.send(error));
- res.status(200).send();
+  res.status(200).send();
 });
 
-
-
 module.exports = router;
-
-
 
 //mascota status 4 = en adopcion
