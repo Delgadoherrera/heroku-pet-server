@@ -254,12 +254,6 @@ router.post("/mascotas/editarMascota/:id", async (req, res) => {
   res.status(200).send("success");
 });
 
-router.get("/morfando", async (req, res) => {
-  console.log("req.body", req.body);
-  console.log("req", req);
-
-  res.status(200).send("success");
-});
 
 // NEW DESIGN
 
@@ -276,4 +270,25 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
     }
   );
 });
+router.post("/mascotas/adopcion/:id", async (req, res) => {
+  console.log(req.body)
+
+ Mascota.update(
+   {
+
+     status: 4,
+   },
+   {
+     where: { idMascota: req.params.id },
+   }
+ ).catch((error) => res.send(error));
+ res.status(200).send();
+});
+
+
+
 module.exports = router;
+
+
+
+//mascota status 4 = en adopcion
