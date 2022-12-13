@@ -116,11 +116,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   res.status(200).send();
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  console.log(req.headers.distanceslider);
-  console.log(req.headers);
-  console.log(req.body);
   const mascotasCercanas = [];
-
   Mascota.findAll({
     where: { status: { [Op.in]: [1, 3] } },
   })
@@ -272,18 +268,19 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
   );
 });
 router.post("/mascotas/adopcion/:id", async (req, res) => {
-console.log(req.body)
+  console.log(req.body);
   if (req.body.adoptar === true) {
     Mascota.update(
       {
         status: 4,
+        latPerdida: req.body.latitude,
+        lngPerdida: req.body.longitude,
       },
       {
         where: { idMascota: req.params.id },
       }
     ).catch((error) => res.send(error));
-  }
-  if (req.body.adoptar === false) {
+  } else if (req.body.adoptar === false) {
     Mascota.update(
       {
         status: 0,
@@ -294,9 +291,40 @@ console.log(req.body)
     ).catch((error) => res.send(error));
   }
 
-  res.status(200).send('success');
+  res.status(200).send("success");
 });
+router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
+  const mascotasCercanas = [];
+  Mascota.findAll({
+    where: { status: 4 },
+  })
+    .then(function (mascotas) {
+      if (mascotas) {
+        mascotas.forEach((j) => {
+          let distance = distanciaCoords(
+            req.headers.latitude,
+            req.headers.longitude,
+            j.latPerdida,
+            j.lngPerdida
+          );
 
+          if (distance < req.headers.distanceslider) {
+            console.log(j.nombre, "esta cerca!");
+            mascotasCercanas.push(j);
+          } else {
+            console.log("aun no hay mascotas cerca");
+          }
+        });
+        return res.status(200).send({ data: mascotasCercanas });
+      } else if (!mascotas) {
+        console.log("No hay mascotas perdidas actualmente en tu zona.");
+        /*         return res.status(400) */
+      }
+    })
+    .catch((error) => {
+      console.log("error catch" + error);
+    });
+});
 module.exports = router;
 
 //mascota status 4 = en adopcion
