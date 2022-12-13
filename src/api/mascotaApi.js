@@ -274,6 +274,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
 router.post("/mascotas/adopcion/:id", async (req, res) => {
   console.log(req.headers.adoptar);
   console.log(req.headers);
+  console.log(req.body);
   if (req.headers.adoptar === true) {
     Mascota.update(
       {
