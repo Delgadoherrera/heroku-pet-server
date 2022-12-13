@@ -272,7 +272,7 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
   );
 });
 router.post("/mascotas/adopcion/:id", async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.adoptar);
 
   if (req.headers.adoptar === true) {
     Mascota.update(
@@ -295,7 +295,7 @@ router.post("/mascotas/adopcion/:id", async (req, res) => {
     ).catch((error) => res.send(error));
   }
 
-  res.status(200).send();
+  res.status(200).send('success');
 });
 
 module.exports = router;
