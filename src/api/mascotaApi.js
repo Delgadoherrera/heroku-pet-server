@@ -147,12 +147,8 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
             where: { status: { [Op.in]: [1, 3] } },
           }).then(function (mascotas) {
             console.log("MASCOTAS NO ENCCONTRADA: ", mascotas);
-
             return res.status(200).send({ data: mascotas });
           });
-
-          console.log("No hay mascotas perdidas actualmente en tu zona.");
-          /*         return res.status(400) */
         }
       }
     })
