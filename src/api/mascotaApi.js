@@ -117,7 +117,7 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
 });
 router.get("/mascotas/mascotasPerdidas", async (req, res) => {
   const mascotasCercanas = [];
-  Mascota.findAll({
+  await Mascota.findAll({
     where: { status: { [Op.in]: [1, 3] } },
   })
     .then(function (mascotas) {
@@ -139,11 +139,14 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 
           /* console.log('distance', distance) */
         });
+        console.log('MASCOTAS ENCONTRADAS: ', mascotas)
         return res.status(200).send({ data: mascotasCercanas });
       } else if (!mascotas) {
         Mascota.findAll({
           where: { status: { [Op.in]: [1, 3] } },
         }).then(function (mascotas) {
+          console.log('MASCOTAS NO ENCCONTRADA: ', mascotas)
+
           return res.status(200).send({ data: mascotas });
         });
 
