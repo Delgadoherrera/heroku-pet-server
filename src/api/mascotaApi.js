@@ -131,8 +131,8 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
           );
 
           if (distance < req.headers.distanceslider) {
-            console.log(j.nombre, "esta cerca!");
-            mascotasCercanas.push(j);
+/*             console.log(j.nombre, "esta cerca!");
+ */            mascotasCercanas.push(j);
           } else {
             console.log("aun no hay mascotas cerca");
           }
