@@ -140,7 +140,14 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
           /* console.log('distance', distance) */
         });
         return res.status(200).send({ data: mascotasCercanas });
-      } else if (!mascotas) {
+      }
+      if (!mascotas) {
+        Mascota.findAll({
+          where: { status: { [Op.in]: [1, 3] } },
+        }).then(function (mascotas) {
+          return res.status(200).send({ data: mascotas });
+        });
+
         console.log("No hay mascotas perdidas actualmente en tu zona.");
         /*         return res.status(400) */
       }
