@@ -115,47 +115,6 @@ router.post("/mascotas/mascotaPerdidaNewLocation/:id", async (req, res) => {
   ).catch((error) => res.send(error));
   res.status(200).send();
 });
-router.get("/mascotas/mascotasPerdidas", async (req, res) => {
-  const mascotasCercanas = [];
-  await Mascota.findAll({
-    where: { status: { [Op.in]: [1, 3] } },
-  })
-    .then(function (mascotas) {
-      if (mascotas) {
-        mascotas.forEach((j) => {
-          let distance = distanciaCoords(
-            req.headers.latitude,
-            req.headers.longitude,
-            j.latPerdida,
-            j.lngPerdida
-          );
-
-          if (distance < req.headers.distanceslider) {
-/*             console.log(j.nombre, "esta cerca!");
- */            mascotasCercanas.push(j);
-          } else {
-            console.log("aun no hay mascotas cerca");
-          }
-
-          /* console.log('distance', distance) */
-        });
-        console.log("MASCOTAS ENCONTRADAS: ", mascotasCercanas.length);
-        if (mascotasCercanas.length > 0) {
-          return res.status(200).send({ data: mascotasCercanas });
-        } else if (mascotasCercanas.length < 1) {
-          Mascota.findAll({
-            where: { status: { [Op.in]: [1, 3] } },
-          }).then(function (mascotas) {
-            console.log("MASCOTAS NO ENCCONTRADA: ", mascotas);
-            return res.status(200).send({ data: mascotas });
-          });
-        }
-      }
-    })
-    .catch((error) => {
-      console.log("error catch" + error);
-    });
-});
 
 router.get("/mascotas/mascotaEncontrada", async (req, res) => {
   console.log(req.body);
@@ -274,6 +233,49 @@ router.get("/mascotas/getMyPets/:email", async (req, res) => {
     }
   );
 });
+
+router.get("/mascotas/mascotasPerdidas", async (req, res) => {
+  const mascotasCercanas = [];
+  await Mascota.findAll({
+    where: { status: { [Op.in]: [1, 3] } },
+  })
+    .then(function (mascotas) {
+      if (mascotas) {
+        mascotas.forEach((j) => {
+          let distance = distanciaCoords(
+            req.headers.latitude,
+            req.headers.longitude,
+            j.latPerdida,
+            j.lngPerdida
+          );
+
+          if (distance < req.headers.distanceslider) {
+            /*             console.log(j.nombre, "esta cerca!");
+             */ mascotasCercanas.push(j);
+          } else {
+            console.log("aun no hay mascotas cerca");
+          }
+
+          /* console.log('distance', distance) */
+        });
+        console.log("MASCOTAS ENCONTRADAS: ", mascotasCercanas.length);
+        if (mascotasCercanas.length > 0) {
+          return res.status(200).send({ data: mascotasCercanas });
+        } else if (mascotasCercanas.length < 1) {
+          Mascota.findAll({
+            where: { status: { [Op.in]: [1, 3] } },
+          }).then(function (mascotas) {
+            console.log("MASCOTAS NO ENCCONTRADA: ", mascotas);
+            return res.status(200).send({ data: mascotas });
+          });
+        }
+      }
+    })
+    .catch((error) => {
+      console.log("error catch" + error);
+    });
+});
+
 router.post("/mascotas/adopcion/:id", async (req, res) => {
   console.log(req.body);
   if (req.body.adoptar === true) {
@@ -322,10 +324,15 @@ router.get("/mascotas/mascotasEnAdopcion", async (req, res) => {
             console.log("aun no hay mascotas cerca");
           }
         });
-        return res.status(200).send({ data: mascotasCercanas });
-      } else if (!mascotas) {
-        console.log("No hay mascotas perdidas actualmente en tu zona.");
-        /*         return res.status(400) */
+        if (mascotasCercanas.length > 0) {
+          return res.status(200).send({ data: mascotasCercanas });
+        } else if (mascotasCercanas.length < 1) {
+          Mascota.findAll({
+            where: { status: 4 },
+          }).then(function (mascotas) {
+            return res.status(200).send({ data: mascotas });
+          });
+        }
       }
     })
     .catch((error) => {
