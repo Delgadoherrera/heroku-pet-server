@@ -139,7 +139,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
 
           /* console.log('distance', distance) */
         });
-        console.log("MASCOTAS ENCONTRADAS: ", mascotasCercanas);
+        console.log("MASCOTAS ENCONTRADAS: ", mascotasCercanas.length);
         return res.status(200).send({ data: mascotasCercanas });
       } else if (mascotasCercanas.length < 1) {
         Mascota.findAll({
