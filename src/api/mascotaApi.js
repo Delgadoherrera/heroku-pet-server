@@ -140,8 +140,7 @@ router.get("/mascotas/mascotasPerdidas", async (req, res) => {
           /* console.log('distance', distance) */
         });
         return res.status(200).send({ data: mascotasCercanas });
-      }
-      if (!mascotas) {
+      } else if (!mascotas) {
         Mascota.findAll({
           where: { status: { [Op.in]: [1, 3] } },
         }).then(function (mascotas) {
