@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 const  { expressjwt: jwt } = require("express-jwt");
-var jwks = require('jwks-rsa');
+const jwks = require('jwks-rsa');
 const bodyParser = require("body-parser");
 const db = require("./database/models");
 const Mensaje = db.Mensaje;
@@ -41,14 +41,14 @@ app.use(jwtCheck);
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
-app.use(
+/* app.use(
   session({
     secret: "missingPetsssss",
     resave: true,
     saveUninitialized: true,
   })
 );
-
+ */
 server.listen(4000);
 app.use(cors({ origin: "*" }));
 app.use("/", userApi);
