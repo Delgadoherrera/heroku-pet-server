@@ -34,8 +34,8 @@ algorithms: ['RS256']
 });
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-app.use(jwtCheck);
-
+/* app.use(jwtCheck);
+ */
 
 
 app.use(express.static("public"));
